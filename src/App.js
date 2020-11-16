@@ -5,6 +5,8 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import { setCountries } from "./store/actions/country"
 import { Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CountryList from "./CountryList";
 
 class App extends React.Component {
   componentDidMount() {
@@ -18,7 +20,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" >
-
+          <Router>
+            <Switch>
+              <Route path="/all">
+                <CountryList />
+              </Route>
+            </Switch>
+          </Router>
       </div>
     );
   }
