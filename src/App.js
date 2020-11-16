@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from "react"
 import Axios from 'axios';
@@ -32,8 +31,8 @@ class App extends React.Component {
         <Router>
           <MyNavBar />
           <Switch>
-            <Route path="/all" component={CountryList}/>
-            <Route path="/region/:param" component={CountryList}/>
+            <Route path="/all" component={CountryList} />
+            <Route path="/region/:param" component={CountryList} />
           </Switch>
         </Router>
       </div>
