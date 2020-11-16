@@ -3,16 +3,25 @@ import './App.css';
 import React from "react"
 import Axios from 'axios';
 import { connect } from 'react-redux';
-import { setCountries } from "./store/actions/country"
-import { Container } from 'react-bootstrap';
+import { setCountries, setRegions } from "./store/actions/country"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CountryList from "./CountryList";
+import MyNavBar from './MyNavBar';
 
 class App extends React.Component {
   componentDidMount() {
+    let regions = []
     Axios.get("https://restcountries.eu/rest/v2/all").then(response => {
       this.props.setCountries(response.data)
-      console.log(this.props.countries)
+      if (response.data.length) {
+        response.data.forEach(element => {
+          if (!regions.includes(element.region) && (element.region)) {
+            regions.push(element.region)
+          }
+        });
+        this.props.setRegions(regions)
+        console.log(regions)
+      }
     }).catch(error => {
       console.log(error)
     })
@@ -20,13 +29,17 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" >
-          <Router>
-            <Switch>
-              <Route path="/all">
-                <CountryList />
-              </Route>
-            </Switch>
-          </Router>
+        <Router>
+          <MyNavBar />
+          <Switch>
+            <Route path="/all">
+              <CountryList />
+            </Route>
+            <Route path="/region/:param">
+              <CountryList />
+            </Route>
+          </Switch>
+        </Router>
       </div>
     );
   }
@@ -35,5 +48,5 @@ class App extends React.Component {
 const mapStateProps = (state) => ({
   countries: state.countryReducer.countries
 })
-const mapDispatchToProps = { setCountries }
+const mapDispatchToProps = { setCountries, setRegions }
 export default connect(mapStateProps, mapDispatchToProps)(App)
