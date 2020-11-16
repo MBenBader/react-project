@@ -4,7 +4,7 @@ import React from "react"
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import { setCountries, setRegions } from "./store/actions/country"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CountryList from "./CountryList";
 import MyNavBar from './MyNavBar';
 
@@ -32,12 +32,8 @@ class App extends React.Component {
         <Router>
           <MyNavBar />
           <Switch>
-            <Route path="/all">
-              <CountryList />
-            </Route>
-            <Route path="/region/:param">
-              <CountryList />
-            </Route>
+            <Route path="/all" component={CountryList}/>
+            <Route path="/region/:param" component={CountryList}/>
           </Switch>
         </Router>
       </div>
