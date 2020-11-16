@@ -3,8 +3,15 @@ import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux';
+import InputGroup from "react-bootstrap/InputGroup"
+import FormControl from "react-bootstrap/FormControl"
+import { setFilter } from "./store/actions/country"
 
 class MyNavBar extends Component {
+    searchCountry = (e) => {
+        this.props.setFilter(e.target.value)
+    }
+
     render() {
         return (
             <Navbar bg="light" expand="lg">
@@ -19,7 +26,14 @@ class MyNavBar extends Component {
                             )
                         }
                         )}
-
+                        <InputGroup>
+                            <FormControl
+                                placeholder="Search"
+                                aria-label="Search"
+                                aria-describedby="basic-addon1"
+                                onChange={this.searchCountry.bind(this)}
+                            />
+                        </InputGroup>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -31,4 +45,6 @@ const mapStateProps = (state) => ({
     regions: state.countryReducer.regions
 })
 
-export default connect(mapStateProps)(MyNavBar)
+const mapDispatchToProps = { setFilter }
+
+export default connect(mapStateProps, mapDispatchToProps)(MyNavBar)

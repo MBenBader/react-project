@@ -1,6 +1,7 @@
 const initial_states = {
     countries: [],
-    regions: []
+    regions: [],
+    filter: ""
 }
 const countryReducer = (state = initial_states, action) => {
     switch (action.type) {
@@ -13,6 +14,11 @@ const countryReducer = (state = initial_states, action) => {
             return {
                 ...state,
                 regions: action.payload
+            }
+        case "SET_FILTER":
+            return {
+                ...state,
+                filter: action.payload
             }
         default:
             return state
