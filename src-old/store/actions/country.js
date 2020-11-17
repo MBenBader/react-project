@@ -7,11 +7,6 @@ export const setRegions = (payload) => ({
     payload: payload
 })
 
-export const setSubRegions = (payload) => ({
-    type: "SET_SUBREGIONS",
-    payload: payload
-})
-
 export const setFilter = (payload) => ({
     type: "SET_FILTER",
     payload: payload

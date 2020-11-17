@@ -14,12 +14,9 @@ class CountryList extends React.Component {
     }
     componentDidMount() {
 
-        console.log("Here", this.props)
         if (!this.state.items.length) {
             let test = this.props.countries.filter(elem => {
-                return (elem.region === this.props.match.params.param || (!this.props.match.params.param) 
-                || elem.subregion === this.props.match.params.param)
-                && (elem.name.toLowerCase().includes(this.props.filter.toLowerCase()))
+                return (elem.region === this.props.match.params.param || (!this.props.match.params.param)) && (elem.name.toLowerCase().includes(this.props.filter.toLowerCase()))
             })
             let pagination = []
             for (let number = 1; number <= (this.props.countries.length / this.state.pageState); number++) {
@@ -45,9 +42,7 @@ class CountryList extends React.Component {
 
         if (prevProps.match.params !== this.props.match.params || prevState.active !== this.state.active || prevProps.filter !== this.props.filter) {
             let test = this.props.countries.filter(elem => {
-                return ((elem.region || elem.subregion) === this.props.match.params.param || (!this.props.match.params.param)
-                || elem.subregion === this.props.match.params.param) 
-                && (elem.name.toLowerCase().includes(this.props.filter.toLowerCase()))
+                return (elem.region === this.props.match.params.param || (!this.props.match.params.param)) && (elem.name.toLowerCase().includes(this.props.filter.toLowerCase()))
             })
 
             let pagination = []

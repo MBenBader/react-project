@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import InputGroup from "react-bootstrap/InputGroup"
 import FormControl from "react-bootstrap/FormControl"
 import { setFilter } from "./store/actions/country"
-import Dropdown from "react-bootstrap/Dropdown"
-
 
 class MyNavBar extends Component {
     searchCountry = (e) => {
@@ -22,42 +20,12 @@ class MyNavBar extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link as={Link} to="/all" >All</Nav.Link>
-                        {/* {this.props.regions.map(x => {
+                        {this.props.regions.map(x => {
                             return (
                                 <Nav.Link as={Link} to={`/region/${x}`}>{x}</Nav.Link>
                             )
                         }
-                        )} */}
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Regions
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                {this.props.regions.map(x => {
-                                    return (
-                                        <Dropdown.Item as={Link} to={`/region/${x}`}>{x}</Dropdown.Item>
-                                    )
-                                }
-                                )}
-                                
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                SubgRegions
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                {this.props.subregions.map(x => {
-                                    return (
-                                        <Dropdown.Item as={Link} to={`/region/${x}`}>{x}</Dropdown.Item>
-                                    )
-                                }
-                                )}
-                                
-                            </Dropdown.Menu>
-                        </Dropdown>
+                        )}
                         <InputGroup>
                             <FormControl
                                 placeholder="Search"
@@ -74,9 +42,7 @@ class MyNavBar extends Component {
 }
 
 const mapStateProps = (state) => ({
-    regions: state.countryReducer.regions,
-    subregions: state.countryReducer.subregions
-
+    regions: state.countryReducer.regions
 })
 
 const mapDispatchToProps = { setFilter }

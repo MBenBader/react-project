@@ -1,7 +1,6 @@
 const initial_states = {
     countries: [],
     regions: [],
-    subregions: [],
     filter: ""
 }
 const countryReducer = (state = initial_states, action) => {
@@ -15,11 +14,6 @@ const countryReducer = (state = initial_states, action) => {
             return {
                 ...state,
                 regions: action.payload
-            }
-        case "SET_SUBREGIONS":
-            return {
-                ...state,
-                subregions: action.payload
             }
         case "SET_FILTER":
             return {
